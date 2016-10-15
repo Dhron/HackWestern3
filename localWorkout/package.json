@@ -12,7 +12,8 @@
     "sdkVersion": "3",
     "enableMultiJS": true,
     "watchapp": {
-      "watchface": false
+    "watchface": true,
+    "capabilities": ["location"]
     },
     "resources": {
       "media": []

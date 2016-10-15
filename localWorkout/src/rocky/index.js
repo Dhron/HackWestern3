@@ -7,6 +7,25 @@
 
 var rocky = require('rocky');
 
+function drawHand(ctx, cx, cy, angle, length, color)
+{
+  ctx.lineWidth = 8;
+  ctx.strokeStyle = color;
+
+  ctx.beginPath();
+
+  ctx.moveTo(cx, cy);
+  ctx.lineTo(x2, y2);
+
+  ctx.stroke();
+
+}
+
+function fracToRadian(minuteFrac)
+{
+  return minuteFrac * 2 * Math.PI;
+}
+
 rocky.on('draw', function(event) {
   // Get the CanvasRenderingContext2D object
   var ctx = event.context;
@@ -23,15 +42,15 @@ rocky.on('draw', function(event) {
   // Current date/time
   var d = new Date();
 
-  // Set the text color and alignment
-  ctx.fillStyle = 'white';
-  ctx.textAlign = 'center';
+  //middle point
+  var cx = w / 2;
+  var cy = h / 2;
 
-  // Display the time, in the middle of the screen
-  // Note that we refresh the screen only once a minute (see below)
-  // whereas .toLocaleTimeString() also contains seconds
-  // Your first step as a watchface developer could be to make this more awesome :)
-  ctx.fillText(d.toLocaleTimeString(), w / 2, h / 2, w);
+  var minuteFrac = (d.getMinutes() / 60);
+  var minuteAngle = fracToRadian(minuteFrac);
+  var hourFrac = (d.getHours() % 12 + minuteFrac);
+  
+
 });
 
 rocky.on('minutechange', function(event) {
