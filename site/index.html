@@ -53,7 +53,7 @@
                      <input name="radius" type="text" maxlength="10px" id="radius" class="searchField"/>
       <button class="button-primary" style="margin-left: 5%" onclick="getLocation()">Set your distance (km)</button>
                     <div align="center" id="map-canvas" style="width: 600px; height: 300px"></div> 
-					<label for="calories" class="swatch_text" >Estimated Calories: </label>
+                    <p>Estimated Calories: <span id="calories"></span></p>
                 </div>
             </div>
         </div>
@@ -167,10 +167,9 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, 
   }, function(response, status) {
     if (status == google.maps.DirectionsStatus.OK) {
       directionsDisplay.setDirections(response);
-	  var distance = (response.routes[0].legs[0].distance.value + " meters")/1000;
-	  var cal = distance *55;
-	  var labelCal = document.getElementById("calories");
-	  label.value = cal;
+	  var distance = (response.routes[0].legs[0].distance.value) /1000;
+	  var cal = distance * 55;
+	  document.getElementById("calories").innerHTML = String(cal);
 	   
     } else {
       window.alert('Directions request failed due to ' + status);
