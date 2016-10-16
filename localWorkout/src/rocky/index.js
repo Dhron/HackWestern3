@@ -6,61 +6,47 @@
 //or Pebble's GPS
 
 var rocky = require('rocky');
+var pos; // variable to hold the position that we get from pkjs
 
-function drawHand(ctx, cx, cy, angle, length, color)
+//need to continuously give position data to pkjs and
+//have rocky update the display.
+//
+
+
+function writePos(ctx, position)
 {
-  ctx.lineWidth = 8;
-  ctx.strokeStyle = color;
-
-  ctx.beginPath();
-
-  ctx.moveTo(cx, cy);
-  ctx.lineTo(x2, y2);
-
-  ctx.stroke();
-
-}
-
-function fracToRadian(minuteFrac)
-{
-  return minuteFrac * 2 * Math.PI;
+    var latString = position;
+    // Draw the text, top center
+    ctx.fillStyle = 'lightgray';
+    ctx.textAlign = 'center';
+    ctx.font = '14px Gothic';
+    ctx.fillText(latString.pointA, ctx.canvas.unobstructedWidth / 2, 2); 
 }
 
 rocky.on('draw', function(event) {
-  // Get the CanvasRenderingContext2D object
-  var ctx = event.context;
+    var ctx = event.context;
+    //get some information about the context
 
-  // Clear the screen with default .fillStyle = 'black'
-  ctx.clearRect(0, 0, ctx.canvas.clientWidth, ctx.canvas.clientHeight);
-
-  // As the screen could be partly covered by system UI
-  // we are asking for the unobstructed screen area
-  // This way, we can make sure our content is always fully visible
-  var w = ctx.canvas.unobstructedWidth;
-  var h = ctx.canvas.unobstructedHeight;
-
-  // Current date/time
-  var d = new Date();
-
-  //middle point
-  var cx = w / 2;
-  var cy = h / 2;
-
-  var minuteFrac = (d.getMinutes() / 60);
-  var minuteAngle = fracToRadian(minuteFrac);
-  var hourFrac = (d.getHours() % 12 + minuteFrac);
-  
-
+    // Determine the width and height of the display
+    var w = ctx.canvas.unobstructedWidth; 
+    var h = ctx.canvas.unobstructedHeight;
+    if(pos){
+        writePos(ctx, pos);
+    }
 });
 
-rocky.on('minutechange', function(event) {
-  // Callback will be executed on each new full minute
-  // If you need a higher or lower frequency, try 'secondchange' or 'hourchange'
-  // Note: more frequent updates mean more battery consumption (e.g. 60x)
+rocky.on('message', function(event) {
+    // Get the message that was passed
+    var message = event.data;
+    if(message.position)
+    {
+        pos = message.position;
+        rocky.requestRedraw();  
+    }
 
-  // Display a message in the system logs
-  console.log("Another minute with your Pebble!");
+rocky.on('second', function(event) }
+        rocky.postMessage({'fetch':true});
+    });
 
-  // Request the screen to be redrawn at the next possible time
-  rocky.requestDraw();
-});
+});    
+

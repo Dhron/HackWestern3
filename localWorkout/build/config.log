@@ -1,0 +1,47 @@
+# project  configured on Sun Oct 16 00:01:23 2016 by
+# waf 1.7.11 (abi 98, python 2070af0 on darwin)
+# using /Users/Dhron/Library/Application Support/Pebble SDK/SDKs/current/sdk-core/pebble/waf configure
+#
+----------------------------------------
+Setting top to
+/Users/Dhron/Desktop/HackWestern3/localWorkout
+----------------------------------------
+Setting out to
+/Users/Dhron/Desktop/HackWestern3/localWorkout/build
+----------------------------------------
+Checking for program node,nodejs
+/usr/local/bin/node
+find program=['node', 'nodejs'] paths=['/usr/local/Cellar/pebble-toolchain/2.0/arm-cs-tools/bin', '/Library/Frameworks/Python.framework/Versions/2.7/bin', '/Users/Dhron/Library/Enthought/Canopy_64bit/User/bin', '/Library/Frameworks/Python.framework/Versions/2.7/bin', '/usr/local/bin', '/usr/bin', '/bin', '/usr/sbin', '/sbin', '/opt/X11/bin', '/usr/local/git/bin'] var='NODE' -> '/usr/local/bin/node'
+----------------------------------------
+Found Pebble SDK for diorite in:
+/Users/Dhron/Library/Application Support/Pebble SDK/SDKs/current/sdk-core/pebble/diorite
+----------------------------------------
+Checking for program gcc,cc
+arm-none-eabi-gcc
+find program=['gcc', 'cc'] paths='' var='CC' -> 'arm-none-eabi-gcc'
+----------------------------------------
+Checking for program ar
+arm-none-eabi-ar
+find program=['ar'] paths='' var='AR' -> 'arm-none-eabi-ar'
+----------------------------------------
+Found Pebble SDK for chalk in:
+/Users/Dhron/Library/Application Support/Pebble SDK/SDKs/current/sdk-core/pebble/chalk
+----------------------------------------
+Checking for program gcc,cc
+arm-none-eabi-gcc
+find program=['gcc', 'cc'] paths='' var='CC' -> 'arm-none-eabi-gcc'
+----------------------------------------
+Checking for program ar
+arm-none-eabi-ar
+find program=['ar'] paths='' var='AR' -> 'arm-none-eabi-ar'
+----------------------------------------
+Found Pebble SDK for basalt in:
+/Users/Dhron/Library/Application Support/Pebble SDK/SDKs/current/sdk-core/pebble/basalt
+----------------------------------------
+Checking for program gcc,cc
+arm-none-eabi-gcc
+find program=['gcc', 'cc'] paths='' var='CC' -> 'arm-none-eabi-gcc'
+----------------------------------------
+Checking for program ar
+arm-none-eabi-ar
+find program=['ar'] paths='' var='AR' -> 'arm-none-eabi-ar'
