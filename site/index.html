@@ -53,7 +53,7 @@
                      <input name="radius" type="text" maxlength="10px" id="radius" class="searchField"/>
       <button class="button-primary" style="margin-left: 5%" onclick="getLocation()">Set your distance (km)</button>
                     <div align="center" id="map-canvas" style="width: 600px; height: 300px"></div> 
-                
+					<label for="calories" class="swatch_text" >Estimated Calories: </label>
                 </div>
             </div>
         </div>
@@ -77,6 +77,12 @@ if (navigator.geolocation) {
             handleLocationError(true, infoWindow, map.getCenter());
           });
         } else {
+			var pos = {
+              lat: 43.009,
+              lng: -81.277
+            };
+			pos1 = new google.maps.LatLng(pos.lat,pos.lng);
+			getCircle(pos1);
           // Browser doesn't support Geolocation
           handleLocationError(false, infoWindow, map.getCenter());
         }
@@ -157,10 +163,14 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, 
     origin: pointA,
     destination: pointB,
 	provideRouteAlternatives: true,
-    travelMode: google.maps.TravelMode.DRIVING
+    travelMode: google.maps.TravelMode.WALKING
   }, function(response, status) {
     if (status == google.maps.DirectionsStatus.OK) {
       directionsDisplay.setDirections(response);
+	  var distance = (response.routes[0].legs[0].distance.value + " meters")/1000;
+	  var cal = distance *55;
+	  var labelCal = document.getElementById("calories");
+	  label.value = cal;
 	   
     } else {
       window.alert('Directions request failed due to ' + status);
