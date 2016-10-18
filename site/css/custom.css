@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
 button.button-primary {
     background-color: #1E88E5;
     border-color: #039BE5;
@@ -43,6 +45,12 @@ a{
     height: 100vh;
     font-size: 30px;
     color: #111;
+}
+
+#logo{
+    font-family: 'Oswald', sans-serif;
+    font-size: 100px;
+
 }
 
 

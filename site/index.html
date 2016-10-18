@@ -46,7 +46,7 @@
             <div class="row">
                 <div class="twelve column" style="margin-top: 10%">
                     
-                    <h1 class="animated bounceInDown">GitFit</h1>
+                    <h1 id="logo" class="animated bounceInDown">GitFit</h1>
                     <p class="animated bounceInLeft">Find a proper walk or run based on your fit.</p>
                     
                     
@@ -168,7 +168,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, 
     if (status == google.maps.DirectionsStatus.OK) {
       directionsDisplay.setDirections(response);
 	  var distance = (response.routes[0].legs[0].distance.value) /1000;
-	  var cal = distance * 55;
+	  var cal = Math.round(distance * 55);
 	  document.getElementById("calories").innerHTML = String(cal);
 	   
     } else {
